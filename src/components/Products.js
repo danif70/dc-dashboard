@@ -1,23 +1,18 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
 
-
 const Products = () => {
   const [arrayProducts, setArrayProducts] = useState([]);
 
   useEffect(() => {
-    const getProducts = async () => {
-      const response = await fetch('http://localhost:8000/api/products', {
-        method: "GET",
-      });
-      const data = await response.json();
-      setArrayProducts(data);
-    };
-    getProducts();
-  }, []);
+    fetch("http://localhost:8000/api/products")
+      .then((response) => response.json())
+      .then((data) => {
+        setArrayProducts(data)});
+  },[]);
 
   const productFunction = (item) => {
-    return window.location= `products/${item.id}`
+    return (window.location = `products/${item.id}`);
   };
 
   return (
@@ -33,15 +28,15 @@ const Products = () => {
             <p>{item.price}</p>
             <p>{item.category}</p>
             <img src={item.image} alt={item.description} height="200px" />
-           
-              <button onClick={()=> productFunction(item)}>Detalle del Producto</button>
-           
+
+            <button onClick={() => productFunction(item)}>
+              Detalle del Producto
+            </button>
           </>
         ))}
       </section>
     </>
   );
 };
-
 
 export default Products;
