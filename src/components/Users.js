@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
+
 const Users = () => {
   const [arrayUsers, setArrayUsers] = useState([])
 
-  console.log(arrayUsers)
   useEffect(() => {
-    const getUsers = async () => {
-      const response = await fetch('http://localhost:8000/api/users', {
-        method: "GET",
-      });
-      const data = await response.json();
-      setArrayUsers(data);
-    };
-    getUsers();
+    fetch("http://localhost:8000/api/users")
+    .then((response) => response.json())
+    .then((data) => setArrayUsers(data));
   }, []);
 
   return (
@@ -21,12 +16,12 @@ const Users = () => {
         <button>Home</button>
       </a>
       <section>
-        {arrayUsers.map((item) => (
+        {arrayUsers.map((user) => (
           <>
-          <p>{item.name}</p>
-          <p>{item.lastname}</p>
-          <p>{item.email}</p>
-          <a href="users/:{item.id}">
+          <p>{user.name}</p>
+          <p>{user.lastname}</p>
+          <p>{user.email}</p>
+          <a href={`users/${user.id}`}>
         <button>Detalle de Usuario</button>
       </a>
           </>
