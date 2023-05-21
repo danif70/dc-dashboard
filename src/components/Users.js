@@ -6,7 +6,7 @@ const Users = () => {
   useEffect(() => {
     fetch("http://localhost:8000/api/users")
     .then((response) => response.json())
-    .then((data) => setArrayUsers(data));
+    .then((data) => console.log(data));
   }, []);
 
   return (
