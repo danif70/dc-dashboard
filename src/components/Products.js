@@ -1,5 +1,8 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
+import Table from "react-bootstrap/Table"
+import Button from "react-bootstrap/Button"
+import NavBar from "./Nav";
 
 const Products = () => {
   const [arrayProducts, setArrayProducts] = useState([]);
@@ -8,6 +11,7 @@ const Products = () => {
     fetch("http://localhost:8000/api/products")
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setArrayProducts(data)});
   },[]);
 
@@ -17,24 +21,40 @@ const Products = () => {
 
   return (
     <>
-      <h2>Productos</h2>
-      <a href="/">
-        <button>Home</button>
-      </a>
-      <section>
-        {arrayProducts.map((item) => (
-          <>
-            <p>{item.name}</p>
-            <p>{item.price}</p>
-            <p>{item.category}</p>
-            <img src={item.image} alt={item.description} height="200px" />
-
-            <button onClick={() => productFunction(item)}>
-              Detalle del Producto
-            </button>
-          </>
-        ))}
+    <div className="user-container">
+      <NavBar/>
+      <h2>Products</h2>
+      <section className="table-users">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>Category</th>
+              <th>Img</th>
+              <th>Product Detail</th>
+            </tr>
+          </thead>
+          <tbody>
+            {arrayProducts.map((item) => (
+              <tr>
+              <td>{item.id}</td>
+              <td>{item.name}</td>
+              <td>{item.price}</td>
+              <td>{item.category}</td>
+              <td><img src={item.image} alt={item.description} height="200px" /></td>
+              <td>
+                <Button variant="secondary" size="sm" onClick={() => productFunction(item)}>
+                  Detalle del Producto
+                </Button>
+              </td>
+              </tr>
+            ))}
+          </tbody>
+          </Table>
       </section>
+    </div>
     </>
   );
 };

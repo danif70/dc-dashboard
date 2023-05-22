@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import './Users.css'
+import Table from "react-bootstrap/Table"
+import Button from "react-bootstrap/Button"
+import NavBar from "./Nav";
 
 const Users = () => {
   const [arrayUsers, setArrayUsers] = useState([])
@@ -9,26 +13,46 @@ const Users = () => {
     .then((data) => setArrayUsers(data));
   }, []);
 
+  const handlerHome = () => {
+    window.location.href = '/';
+  }
+
   return (
     <>
+    <div className="user-container">
+      <NavBar/>
       <h2>Usuarios</h2>
-      <a href="/">
-        <button>Home</button>
-      </a>
-      <section>
-        {arrayUsers.map((user) => (
-          <>
-          <p>{user.name}</p>
-          <p>{user.lastname}</p>
-          <p>{user.email}</p>
-          <a href={`users/${user.id}`}>
-        <button>Detalle de Usuario</button>
-      </a>
-          </>
-        ))}
+      <section className="table-users">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Admin</th>
+            </tr>
+          </thead>
+          <tbody>
+            {arrayUsers.map((user) => (
+              <tr>
+              <td>{user.id}</td>
+              <td>{user.name}</td>
+              <td>{user.last_name}</td>
+              <td>{user.email}</td>
+              <td>{user.is_admin === 1 ? 'Yes' : 'No'}</td>
+              </tr>
+            ))}
+          </tbody>
+          </Table>
       </section>
+    </div>
     </>
   );
 };
 
 export default Users;
+
+{/* <a href={`users/${user.id}`}>
+                <button>Detalle de Usuario</button>
+              </a> */}
