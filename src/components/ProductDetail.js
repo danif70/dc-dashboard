@@ -1,6 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import NavBar from "./Nav";
+import './ProductDetail.css'
+import Card from 'react-bootstrap/Card';
 
 
 const ProductDetail = () => {
@@ -17,15 +20,18 @@ const ProductDetail = () => {
   },[]);
 
   return (
-    <>
-      <h2>Detalle del Producto</h2>
-      <h2>{productItem && productItem.name}</h2>
-      <h3>{productItem && productItem.category}</h3>
-      <img src={productItem && `../../../grupo_8_dh-project/public/images/products/${productItem.image}`} alt={productItem && productItem.description}/>
-      <a href="/products">
-        <button>Productos</button>
-      </a>
-    </>
+    <div className="product-detail">
+      <NavBar/>
+      <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" /* src= *//>
+      <Card.Body>
+        <Card.Title>Detalle del Producto</Card.Title>
+        <Card.Text>
+          {productItem && productItem.name}
+        </Card.Text>
+      </Card.Body>
+      </Card>
+    </div>
   );
 };
 
