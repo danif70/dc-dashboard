@@ -23,11 +23,15 @@ const ProductDetail = () => {
     <div className="product-detail">
       <NavBar/>
       <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" /* src= *//>
+      {productItem && 
+        <Card.Img variant="top" src={`http://localhost:8000/images/products/${productItem.image}`}/>
+      }
       <Card.Body>
         <Card.Title>Detalle del Producto</Card.Title>
         <Card.Text>
-          {productItem && productItem.name}
+          <h5>{productItem && productItem.name}</h5>
+          <p>{productItem && productItem.description}</p>
+          <p>${productItem && productItem.price}</p>
         </Card.Text>
       </Card.Body>
       </Card>
