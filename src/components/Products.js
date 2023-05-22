@@ -12,31 +12,26 @@ const Products = () => {
     fetch("http://localhost:8000/api/products")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setArrayProducts(data);
+        setArrayProducts(data.products);
         setAllData(data);
+        console.log(data);
       });
   }, []);
-
-  const productFunction = (item) => {
-    return (window.location = `products/${item.id}`);
-  };
 
   return (
     <>
     <div className="user-container">
       <NavBar/>
       <h2>Products</h2>
-      <h4>Cantidad de productos: {allData && allData.length}</h4>
+      <h4>Cantidad de productos: {arrayProducts && arrayProducts.length}</h4>
       <section className="table-users">
         <Table striped bordered hover>
           <thead>
             <tr>
               <th>#</th>
               <th>Product Name</th>
-              <th>Price</th>
-              <th>Category</th>
-              <th>Img</th>
+              <th>Description</th>
+              <th>Link to page</th>
               <th>Product Detail</th>
             </tr>
           </thead>
@@ -45,12 +40,15 @@ const Products = () => {
               <tr>
               <td>{item.id}</td>
               <td>{item.name}</td>
-              <td>{item.price}</td>
-              <td>{item.id_category}</td>
-              <td><img src={item.image} alt={item.description}/></td>
+              <td>{item.description}</td>
               <td>
-                <Button variant="secondary" size="sm" onClick={() => productFunction(item)}>
-                  Detalle del Producto
+                <Button onClick={() => window.location = `http://localhost:8000${item.detail}`}>
+                  Page
+                </Button>
+              </td>
+              <td>
+                <Button variant="secondary" size="sm" onClick={() => window.location = item.detail}>
+                  Product
                 </Button>
               </td>
               </tr>

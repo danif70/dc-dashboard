@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import NavBar from "./Nav";
+import Card from 'react-bootstrap/Card';
 
 const UserDetail = () => {
 
@@ -17,17 +19,21 @@ const UserDetail = () => {
   console.log(usersDetail)
 
   return (
-    <>
-    <h2>Detalle del Usuario</h2>
-      <h3>Name: {usersDetail && usersDetail.name} </h3>
-      <p>Last name: {usersDetail && usersDetail.last_name}</p>
-      <p>Admin: {usersDetail && isAdmin()}</p>
-      <p>Email: {usersDetail && usersDetail.email}</p>
-
-      <a href="/users">
-        <button>Usuarios</button>
-      </a>
-    </>
+    <div className="product-detail">
+      <NavBar/>
+      <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" /* src= *//>
+      <Card.Body>
+        <Card.Title>User Detail</Card.Title>
+        <Card.Text>
+          <h6>Name: {usersDetail && usersDetail.name} </h6>
+          <p>Last name: {usersDetail && usersDetail.last_name}</p>
+          <p>Admin: {usersDetail && isAdmin()}</p>
+          <p>Email: {usersDetail && usersDetail.email}</p>
+        </Card.Text>
+      </Card.Body>
+      </Card>
+    </div>
   );
 };
 
