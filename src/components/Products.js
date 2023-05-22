@@ -6,14 +6,17 @@ import NavBar from "./Nav";
 
 const Products = () => {
   const [arrayProducts, setArrayProducts] = useState([]);
+  const [allData, setAllData] = useState();
 
   useEffect(() => {
     fetch("http://localhost:8000/api/products")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setArrayProducts(data)});
-  },[]);
+        setArrayProducts(data);
+        setAllData(data);
+      });
+  }, []);
 
   const productFunction = (item) => {
     return (window.location = `products/${item.id}`);
@@ -24,6 +27,7 @@ const Products = () => {
     <div className="user-container">
       <NavBar/>
       <h2>Products</h2>
+      <h4>Cantidad de productos: {allData && allData.length}</h4>
       <section className="table-users">
         <Table striped bordered hover>
           <thead>
@@ -42,8 +46,8 @@ const Products = () => {
               <td>{item.id}</td>
               <td>{item.name}</td>
               <td>{item.price}</td>
-              <td>{item.category}</td>
-              <td><img src={item.image} alt={item.description} height="200px" /></td>
+              <td>{item.id_category}</td>
+              <td><img src={item.image} alt={item.description}/></td>
               <td>
                 <Button variant="secondary" size="sm" onClick={() => productFunction(item)}>
                   Detalle del Producto

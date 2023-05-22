@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './Users.css'
 import Table from "react-bootstrap/Table"
-import Button from "react-bootstrap/Button"
 import NavBar from "./Nav";
 
 const Users = () => {
@@ -13,15 +12,12 @@ const Users = () => {
     .then((data) => setArrayUsers(data));
   }, []);
 
-  const handlerHome = () => {
-    window.location.href = '/';
-  }
-
   return (
     <>
     <div className="user-container">
       <NavBar/>
       <h2>Usuarios</h2>
+      <h4>Último usuario creado: </h4>
       <section className="table-users">
         <Table striped bordered hover>
           <thead>
@@ -52,7 +48,3 @@ const Users = () => {
 };
 
 export default Users;
-
-{/* <a href={`users/${user.id}`}>
-                <button>Detalle de Usuario</button>
-              </a> */}
