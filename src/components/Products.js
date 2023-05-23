@@ -23,7 +23,7 @@ const Products = () => {
     <div className="user-container">
       <NavBar/>
       <h2>Products</h2>
-      <h4>Cantidad de productos: {arrayProducts && arrayProducts.length}</h4>
+      <h4>Products quantity: {arrayProducts && arrayProducts.length}</h4>
       <section className="table-users">
         <Table striped bordered hover>
           <thead>

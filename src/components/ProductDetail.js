@@ -27,7 +27,7 @@ const ProductDetail = () => {
         <Card.Img variant="top" src={`http://localhost:8000/images/products/${productItem.image}`}/>
       }
       <Card.Body>
-        <Card.Title>Detalle del Producto</Card.Title>
+        <Card.Title>Product Detail</Card.Title>
         <Card.Text>
           <h5>{productItem && productItem.name}</h5>
           <p>{productItem && productItem.description}</p>

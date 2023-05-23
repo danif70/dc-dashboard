@@ -19,8 +19,8 @@ const Users = () => {
     <>
     <div className="user-container">
       <NavBar/>
-      <h2>Usuarios</h2>
-      <h4>Id último usuario creado: {arrayUsers.length}</h4>
+      <h2>Users</h2>
+      <h4>Last user created id: {arrayUsers.length}</h4>
       <section className="table-users">
         <Table striped bordered hover>
           <thead>
